@@ -58,33 +58,29 @@ def draw_scene(canvas, scene_left, scene_top, scene_right, scene_bottom):
     house_width = 300
     house_bottom =700
     draw_house(canvas, house_left, house_height, house_width, house_bottom)
-    
-    def _create_circle(self, x, y, r, **kwargs):
-        return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)
     tk.Canvas.create_circle = _create_circle
-
-    def _create_circle_arc(self, x, y, r, **kwargs):
-        if "start" in kwargs and "end" in kwargs:
-            kwargs["extent"] = kwargs["end"] - kwargs["start"]
-            del kwargs["end"]
-        return self.create_arc(x-r, y-r, x+r, y+r, **kwargs)
     tk.Canvas.create_circle_arc = _create_circle_arc
-
+    # Draw Sun 
     canvas.create_circle(100, 120, 48, fill="yellow", outline="yellow", width=4)
     canvas.create_circle_arc(100, 120, 48, fill="yellow", outline="", start=45, end=140)
     canvas.create_circle_arc(100, 120, 48, fill="yellow", outline="", start=275, end=305)
-    canvas.create_circle_arc(100, 120, 45, style="arc", outline="yellow", width=6, start=270-25, end=270+25)
-
+    canvas.create_circle_arc(100, 102, 48, style="arc", outline="yellow", width=6, start=270-25, end=270+25)
+    # Draw cloud
     canvas.create_circle(400, 0, 100, fill="white", outline="#808080", width=1)
     canvas.create_circle_arc(400, 0, 100, fill="white", outline="", start=45, end=140)
     canvas.create_circle_arc(400, 0, 100, fill="white", outline="", start=275, end=305)
     canvas.create_circle_arc(400, 0, 100, style="arc", outline="#808080", width=1, start=270-25, end=270+25)
-    
+    # Draw cloud
     canvas.create_circle(800, 0, 100, fill="white", outline="#808080", width=1)
     canvas.create_circle_arc(800, 0, 100, fill="white", outline="", start=45, end=140)
     canvas.create_circle_arc(800, 0, 100, fill="white", outline="", start=275, end=305)
     canvas.create_circle_arc(800, 0, 100, style="arc", outline="#808080", width=1, start=270-25, end=270+25)
-    
+    # Draw cloud
+    canvas.create_circle(1200, 0, 100, fill="white", outline="#808080", width=1)
+    canvas.create_circle_arc(400, 0, 100, fill="white", outline="", start=45, end=140)
+    canvas.create_circle_arc(400, 0, 100, fill="white", outline="", start=275, end=305)
+    canvas.create_circle_arc(400, 0, 100, style="arc", outline="#808080", width=1, start=270-25, end=270+25)
+    # Draw Floor
     canvas.create_rectangle(0, 900, 1600, 700,outline="gray20", width=1, fill="green")
 
     
@@ -95,6 +91,16 @@ def draw_scene(canvas, scene_left, scene_top, scene_right, scene_bottom):
 def draw_house(canvas, house_left, house_height, house_width, house_bottom):
    canvas.create_rectangle(house_left, house_height, house_width, house_bottom, outline="gray20", width=1, fill="#808080") 
    canvas.create_rectangle(120, 600, 200, 700,outline="gray20", width=1, fill="#000000")    
+
+def _create_circle(self, x, y, r, **kwargs):
+        return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)
+
+def _create_circle_arc(self, x, y, r, **kwargs):
+        if "start" in kwargs and "end" in kwargs:
+            kwargs["extent"] = kwargs["end"] - kwargs["start"]
+            del kwargs["end"]
+        return self.create_arc(x-r, y-r, x+r, y+r, **kwargs)
+
 def draw_pine_tree(canvas, peak_x, peak_y, height):
     """Draw a single pine tree.
     Parameters
