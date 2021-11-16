@@ -130,4 +130,6 @@ def main():
     make_periodic_table()
     
 
-main()
+# Call main to start this program.
+if __name__ == "__main__":
+    main()
